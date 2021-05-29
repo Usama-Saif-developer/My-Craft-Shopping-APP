@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductDescriptionFragment">
+
+    <TextView
+        android:id="@+id/tv_product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Our this product have some description read it carefully.  We give you 1 year warrenty with this and you can take it at installments.our clients whose want to buy at installments please visit our store OR Take the help through their Account help button.               THANKS FOR SHOPING HERE"
+        android:textColor="@color/black" />
+</FrameLayout>

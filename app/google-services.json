@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "497282989192",
+    "project_id": "craftshoping-9f413",
+    "storage_bucket": "craftshoping-9f413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497282989192:android:cd651020fb28284626733d",
+        "android_client_info": {
+          "package_name": "com.example.craft_shoping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497282989192-328u7fb08kk2br5egj7v4c3153751df8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8t4K2-cVB-0dRSIwd6MV5TPqmSEmbW6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497282989192-328u7fb08kk2br5egj7v4c3153751df8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
