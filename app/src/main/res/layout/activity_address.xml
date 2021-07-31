@@ -103,16 +103,16 @@
                     android:inputType="number"
                     android:textColor="@color/purple_700" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/provinces_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="16dp"
+                    android:background="@drawable/border_background"
+                    android:backgroundTint="@color/white"
                     android:layout_weight="1"
-                    android:hint="State*"
-                    android:backgroundTint="@color/purple_700"
-                    android:inputType="textPersonName"
-                    android:textColor="@color/purple_700" />
+                    />
             </LinearLayout>
 
             <EditText

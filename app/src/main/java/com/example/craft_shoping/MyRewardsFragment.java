@@ -1,17 +1,14 @@
 package com.example.craft_shoping;
 
+import android.app.Dialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +26,8 @@ public class MyRewardsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView rewardRecyclerview;
+    private Dialog loadingDialog;
+    public  static MyRewardAdapter myRewardAdapter;
 
     public MyRewardsFragment() {
         // Required empty public constructor
@@ -65,20 +64,28 @@ public class MyRewardsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_my_rewards, container, false);
-        rewardRecyclerview=view.findViewById(R.id.my_rewards_recyclerview);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        View view = inflater.inflate(R.layout.fragment_my_rewards, container, false);
+
+        ///loading Dailog//////
+        loadingDialog = new Dialog(getContext());
+        loadingDialog.setContentView(R.layout.loading_progress_dailog);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawable(getContext().getDrawable(R.drawable.slider_background));
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+        ///loading Dailog//////
+
+        rewardRecyclerview = view.findViewById(R.id.my_rewards_recyclerview);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rewardRecyclerview.setLayoutManager(layoutManager);
-        List<RewardModel> rewardModelList=new ArrayList<>();
-        rewardModelList.add(new RewardModel("Cash Back","Valid before 2th May 2021","Using this Coupen You can Get 20% OFF at any product above at Rs.500/- and below at Rs.2000/-"));
-        rewardModelList.add(new RewardModel("Combo Coupen","Valid before 13th Jan 2021","Using this Coupen You can Get 30% OFF at any product above at Rs.3000/- "));
-        rewardModelList.add(new RewardModel("Buy 1 get 1 free","Till 22th May 2021","Using this Coupen You can Get 50% OFF at any product above at Rs.500/- and below at Rs.2000/-"));
-        rewardModelList.add(new RewardModel("Combo Coupen","Valid before 5th April 2021","70% Discount"));
-        rewardModelList.add(new RewardModel("Cash Back","Valid before 2th May 2021","Using this Coupen You can Get 20% OFF at any product above at Rs.500/- and below at Rs.2000/-"));
-        rewardModelList.add(new RewardModel("Buy 1 Get 3 Free","Only Till Ramzan","Large Deal in Small price"));
-        MyRewardAdapter myRewardAdapter=new MyRewardAdapter(rewardModelList,false);
+        myRewardAdapter = new MyRewardAdapter(DBqueries.rewardModelList, false);
         rewardRecyclerview.setAdapter(myRewardAdapter);
+        if (DBqueries.rewardModelList.size()==0){
+            DBqueries.loadRewards(getContext(),loadingDialog,true);
+        }else{
+            loadingDialog.dismiss();
+        }
         myRewardAdapter.notifyDataSetChanged();
         return view;
 

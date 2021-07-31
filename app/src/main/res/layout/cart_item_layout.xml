@@ -25,9 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Google Pixel XL 2(Mirror Black,128GB)"
         android:textColor="@color/black"
         android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_image_at_wishlist"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,8 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="Offers Applied"
-        android:textSize="12sp"
         android:textColor="@color/teal_200"
+        android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_price_at_cart" />
 
@@ -102,6 +106,7 @@
         android:text="Coupens_Applied"
         android:textColor="@color/teal_700"
         android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offers_applied" />
 
@@ -126,7 +131,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="#FF3030"
+        android:background="@color/purple_700"
         android:gravity="right"
         android:orientation="horizontal"
         android:padding="16dp"
@@ -139,7 +144,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Chexk price after coupen Redemption"
+            android:paddingBottom="10dp"
+            android:text="Apply your coupen here"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
@@ -173,4 +179,16 @@
             android:gravity="center"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/cod_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_free_coupen"
+        app:layout_constraintStart_toEndOf="@+id/tv_free_coupen"
+        app:layout_constraintTop_toBottomOf="@+id/product_title_at_cart"
+        app:srcCompat="@drawable/cod_indicator" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,6 @@
         android:id="@+id/main_cart_icon"
         android:orderInCategory="100"
         android:title="Cart"
-        android:icon="@drawable/ic_outline_add_shopping_cart_24"
+        android:icon="@drawable/ic_baseline_shopping_cart_white_24"
         app:showAsAction="always"/>
 </menu>

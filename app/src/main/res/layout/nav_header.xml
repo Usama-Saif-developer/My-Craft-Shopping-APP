@@ -10,10 +10,12 @@
     android:padding="18dp"
     android:background="@color/purple_700">
 
-    <ImageView
-        android:id="@+id/current_order_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/current_order_pic"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/white"
         android:src="@mipmap/profile"
         app:layout_constraintBottom_toTopOf="@+id/nav_username"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,11 +43,11 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/add_profile_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/current_order_image"
-        app:layout_constraintEnd_toEndOf="@+id/current_order_image"
+        app:layout_constraintBottom_toBottomOf="@+id/current_order_pic"
+        app:layout_constraintEnd_toEndOf="@+id/current_order_pic"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

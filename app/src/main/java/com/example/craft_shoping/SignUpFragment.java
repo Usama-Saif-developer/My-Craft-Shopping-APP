@@ -6,13 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -27,14 +20,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,29 +49,22 @@ public class SignUpFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    public static boolean disableCloseBtn = false;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private TextView alreadyhaveaccount;
     private FrameLayout parentframelayout;
-
-
     private EditText sign_up_email;
     private EditText sign_up_full_name;
     private EditText sign_up_password;
     private EditText confirm_password;
-
     private ImageButton sign_up_close_btn;
     private Button sign_up_btn;
-
     private ProgressBar sign_up_progress_Bar;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
-
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
-
-    public static boolean disableCloseBtn = false;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -233,7 +227,6 @@ public class SignUpFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void checkinputs() {
         if (!TextUtils.isEmpty(sign_up_email.getText())) {
@@ -285,32 +278,80 @@ public class SignUpFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Map<String, Object> userdata = new HashMap<>();
-                                    userdata.put("sign_up_full_name", sign_up_full_name.getText().toString());
+                                    userdata.put("full_name", sign_up_full_name.getText().toString());
+                                    userdata.put("email", sign_up_email.getText().toString());
+                                    userdata.put("profile", "");
+                                    firebaseFirestore.collection("USERS").document(firebaseAuth.getUid())
+                                            .set(userdata).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                CollectionReference userDataReference = firebaseFirestore.collection("USERS").document(firebaseAuth.getUid()).collection("USER_DATA");
 
-                                    firebaseFirestore.collection("USERS").add(userdata)
-                                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<DocumentReference> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Intent mainIntent = new Intent(getActivity(), MainActivity.class);
-                                                        startActivity(mainIntent);
-                                                        getActivity().finish();
+                                                //Maps
 
-                                                    } else {
-                                                        sign_up_progress_Bar.setVisibility(View.INVISIBLE);
-                                                        sign_up_btn.setEnabled(true);
-                                                        sign_up_btn.setTextColor(Color.rgb(255, 255, 255));
+                                                Map<String, Object> wishlistMap = new HashMap<>();
+                                                wishlistMap.put("list_size", (long) 0);
 
-                                                        String error = task.getException().getMessage();
-                                                        Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-                                                    }
+                                                Map<String, Object> ratingsMap = new HashMap<>();
+                                                ratingsMap.put("list_size", (long) 0);
+
+                                                Map<String, Object> cartMap = new HashMap<>();
+                                                cartMap.put("list_size", (long) 0);
+
+                                                Map<String, Object> myAddressesMap = new HashMap<>();
+                                                myAddressesMap.put("list_size", (long) 0);
+
+                                                Map<String, Object> notificationsMap = new HashMap<>();
+                                                notificationsMap.put("list_size", (long) 0);
+
+                                                //////maps
+
+
+                                                List<String> documentNames = new ArrayList<>();
+                                                documentNames.add("MY_WISHLIST");
+                                                documentNames.add("MY_RATINGS");
+                                                documentNames.add("MY_CART");
+                                                documentNames.add("MY_ADDRESSES");
+                                                documentNames.add("MY_NOTIFICATIONS");
+
+                                                List<Map<String, Object>> documentFields = new ArrayList<>();
+                                                documentFields.add(wishlistMap);
+                                                documentFields.add(ratingsMap);
+                                                documentFields.add(cartMap);
+                                                documentFields.add(myAddressesMap);
+                                                documentFields.add(notificationsMap);
+
+                                                for (int x = 0; x < documentNames.size(); x++) {
+                                                    int finalX = x;
+                                                    userDataReference.document(documentNames.get(x))
+                                                            .set(documentFields.get(x)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                if (finalX == documentNames.size() - 1) {
+                                                                    mainIntent();
+                                                                }
+                                                            } else {
+                                                                sign_up_progress_Bar.setVisibility(View.INVISIBLE);
+                                                                sign_up_btn.setEnabled(true);
+                                                                sign_up_btn.setTextColor(Color.rgb(255, 255, 255));
+                                                                String error = task.getException().getMessage();
+                                                                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
                                                 }
-                                            });
+                                            } else {
+                                                String error = task.getException().getMessage();
+                                                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                 } else {
                                     sign_up_progress_Bar.setVisibility(View.INVISIBLE);
                                     sign_up_btn.setEnabled(true);
                                     sign_up_btn.setTextColor(Color.rgb(255, 255, 255));
-
                                     String error = task.getException().getMessage();
                                     Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
                                 }
@@ -329,9 +370,9 @@ public class SignUpFragment extends Fragment {
     }
 
     private void mainIntent() {
-        if (disableCloseBtn){
-            disableCloseBtn=false;
-        }else {
+        if (disableCloseBtn) {
+            disableCloseBtn = false;
+        } else {
             Intent mainIntent = new Intent(getActivity(), MainActivity.class);
             startActivity(mainIntent);
         }

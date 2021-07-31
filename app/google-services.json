@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "497282989192",
+    "firebase_url": "https://craftshoping-9f413-default-rtdb.firebaseio.com",
     "project_id": "craftshoping-9f413",
     "storage_bucket": "craftshoping-9f413.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "497282989192-krkgna5rtd4jhpkt67hh0g67d88omdts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.craft_shoping",
+            "certificate_hash": "b2ff1638a9713839919d2b7fd3b88272d678bc04"
+          }
+        },
         {
           "client_id": "497282989192-328u7fb08kk2br5egj7v4c3153751df8.apps.googleusercontent.com",
           "client_type": 3

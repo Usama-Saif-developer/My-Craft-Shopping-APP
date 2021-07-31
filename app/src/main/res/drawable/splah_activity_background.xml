@@ -3,10 +3,12 @@
 
     <item>
         <shape>
-            <solid android:color="@color/purple_700"/>
+            <solid android:color="@color/white" />
         </shape>
     </item>
     <item>
-        <bitmap android:src="@mipmap/logo" android:gravity="center"/>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/app_logo" />
     </item>
 </layer-list>

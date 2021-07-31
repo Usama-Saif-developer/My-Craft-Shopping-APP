@@ -21,17 +21,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/current_order_image"
+        android:id="@+id/now_order_pic"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:civ_border_width="5dp"
-        app:civ_border_color="@color/purple_500"
-        android:elevation="6dp"
         android:background="@drawable/slider_background"
+        android:elevation="6dp"
         android:src="@drawable/mobile3"
+        app:civ_border_color="@color/purple_500"
+        app:civ_border_width="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
@@ -52,7 +52,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_order_image" />
+        app:layout_constraintTop_toBottomOf="@+id/now_order_pic" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,8 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:progress="0"
-            android:progressTint="@color/teal_200"
             android:progressBackgroundTint="@color/purple_200"
+            android:progressTint="@color/teal_200"
             android:translationX="20dp" />
 
         <ImageView
@@ -94,8 +94,8 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:translationX="16dp"
-            app:tint="@color/purple_200"
-            app:srcCompat="@drawable/selected_dot" />
+            app:srcCompat="@drawable/selected_dot"
+            app:tint="@color/purple_200" />
 
         <ProgressBar
             android:id="@+id/packed_shipping_progressbar"
@@ -131,7 +131,7 @@
             android:id="@+id/delivered_indicator"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            app:tint="@color/purple_200"
-            app:srcCompat="@drawable/selected_dot" />
+            app:srcCompat="@drawable/selected_dot"
+            app:tint="@color/purple_200" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

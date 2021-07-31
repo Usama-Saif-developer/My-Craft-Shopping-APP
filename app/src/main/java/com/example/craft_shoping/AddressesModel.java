@@ -1,16 +1,29 @@
 package com.example.craft_shoping;
 
 public class AddressesModel {
-    private String fullname;
-    private String address;
-    private String pincode;
-    private Boolean selected;
 
-    public AddressesModel(String fullname, String address, String pincode,Boolean selected) {
-        this.fullname = fullname;
-        this.address = address;
+    private Boolean selected;
+    private String city;
+    private String locality;
+    private String flatNo;
+    private String pincode;
+    private String landmark;
+    private String name;
+    private String mobileNo;
+    private String alternateMobileNo;
+    private String state;
+
+    public AddressesModel(Boolean selected, String city, String locality, String flatNo, String pincode, String landmark, String name, String mobileNo, String alternateMobileNo, String state) {
+        this.selected = selected;
+        this.city = city;
+        this.locality = locality;
+        this.flatNo = flatNo;
         this.pincode = pincode;
-        this.selected=selected;
+        this.landmark = landmark;
+        this.name = name;
+        this.mobileNo = mobileNo;
+        this.alternateMobileNo = alternateMobileNo;
+        this.state = state;
     }
 
     public Boolean getSelected() {
@@ -21,20 +34,28 @@ public class AddressesModel {
         this.selected = selected;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getCity() {
+        return city;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getAddress() {
-        return address;
+    public String getLocality() {
+        return locality;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
+
+    public String getFlatNo() {
+        return flatNo;
+    }
+
+    public void setFlatNo(String flatNo) {
+        this.flatNo = flatNo;
     }
 
     public String getPincode() {
@@ -43,5 +64,45 @@ public class AddressesModel {
 
     public void setPincode(String pincode) {
         this.pincode = pincode;
+    }
+
+    public String getLandmark() {
+        return landmark;
+    }
+
+    public void setLandmark(String landmark) {
+        this.landmark = landmark;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+    public String getAlternateMobileNo() {
+        return alternateMobileNo;
+    }
+
+    public void setAlternateMobileNo(String alternateMobileNo) {
+        this.alternateMobileNo = alternateMobileNo;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

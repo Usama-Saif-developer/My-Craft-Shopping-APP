@@ -241,9 +241,10 @@ public class MyMallFragment extends Fragment {
     @SuppressLint("WrongConstant")
     private void reloadPage() {
         networkInfo = connectivityManager.getActiveNetworkInfo();
-        categoryModelList.clear();
-        lists.clear();
-        loadedCategoryNames.clear();
+//        categoryModelList.clear();
+//        lists.clear();
+//        loadedCategoryNames.clear();
+        DBqueries.clearData();
         if (networkInfo != null && networkInfo.isConnected() == true) {
             MainActivity.drawerLayout.setDrawerLockMode(0);
             noInternetConnection.setVisibility(GONE);
@@ -272,4 +273,5 @@ public class MyMallFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
         }
     }
+
 }

@@ -1,17 +1,14 @@
 package com.example.craft_shoping;
 
+import android.app.Dialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,11 +21,12 @@ public class MyOrderFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    public static MyOrderAdapter myOrderAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private RecyclerView myOrderRecyclerview;
+    private Dialog loadingDialog;
 
     public MyOrderFragment() {
         // Required empty public constructor
@@ -65,20 +63,32 @@ public class MyOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_my_order2, container, false);
-        myOrderRecyclerview=view.findViewById(R.id.my_orders_recyclerview);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        View view = inflater.inflate(R.layout.fragment_my_order2, container, false);
+
+        ///loading Dailog//////
+        loadingDialog = new Dialog(getContext());
+        loadingDialog.setContentView(R.layout.loading_progress_dailog);
+        loadingDialog.setCancelable(false);
+        loadingDialog.getWindow().setBackgroundDrawable(getContext().getDrawable(R.drawable.slider_background));
+        loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        loadingDialog.show();
+        ///loading Dailog//////
+
+        myOrderRecyclerview = view.findViewById(R.id.my_orders_recyclerview);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         myOrderRecyclerview.setLayoutManager(layoutManager);
 
-        List<MyOrderItemModel> myOrderItemModelList=new ArrayList<>();
-        myOrderItemModelList.add(new MyOrderItemModel(R.drawable.men,2,"Dress Shirt(BLACK) XL Men","Delivered on Mon,15th May,2021"));
-        myOrderItemModelList.add(new MyOrderItemModel(R.drawable.women,1,"Dress (BLACK) XL Women","Delivered on Mon,20th May,2020"));
-        myOrderItemModelList.add(new MyOrderItemModel(R.drawable.mobile6,0,"Vivo S1","Cancelled"));
-        MyOrderAdapter myOrderAdapter=new MyOrderAdapter(myOrderItemModelList);
+        myOrderAdapter = new MyOrderAdapter(DBqueries.myOrderItemModelList,loadingDialog);
         myOrderRecyclerview.setAdapter(myOrderAdapter);
-        myOrderAdapter.notifyDataSetChanged();
-        return view;
 
+        DBqueries.loadOrders(getContext(), myOrderAdapter,loadingDialog);
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        myOrderAdapter.notifyDataSetChanged();
     }
 }

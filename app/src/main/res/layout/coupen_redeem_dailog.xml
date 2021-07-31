@@ -62,9 +62,9 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="@+id/discounted_price"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/teal_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27"
         app:srcCompat="@drawable/ic_baseline_local_offer_24" />
@@ -133,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/footer_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -143,7 +143,39 @@
         android:textColor="@color/black"
         android:textSize="10sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/apply_or_remove_btns_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orignal_price" />
+
+    <LinearLayout
+        android:id="@+id/apply_or_remove_btns_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/discounted_price">
+
+        <Button
+            android:id="@+id/remove_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:stateListAnimator="@null"
+            android:text="Remove"
+            android:textColor="@color/purple_500" />
+
+        <Button
+            android:id="@+id/apply_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:stateListAnimator="@null"
+            android:text="Apply"
+            android:textColor="@color/purple_500" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

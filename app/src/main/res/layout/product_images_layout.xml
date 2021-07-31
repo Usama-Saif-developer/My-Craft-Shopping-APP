@@ -34,7 +34,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
-        android:tint="@color/purple_200"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -161,7 +160,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:background="#FF3030"
+        android:background="@color/purple_700"
         android:gravity="right"
         android:orientation="horizontal"
         android:padding="16dp"
@@ -175,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Chexk price after coupen Redemption"
+            android:text="Check price after coupen Redemption"
             android:textAlignment="center"
             android:textColor="@color/white" />
 

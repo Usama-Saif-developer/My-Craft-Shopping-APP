@@ -28,7 +28,8 @@
         android:layout_marginTop="16dp"
         android:text="Black Dress Shirt XL"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,12 +46,15 @@
 
     <TextView
         android:id="@+id/order_delivery_date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Delivered on Monday,15th May 2021"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/order_indicator"
+        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintEnd_toStartOf="@+id/product_image_at_wishlist"
         app:layout_constraintStart_toEndOf="@+id/order_indicator"
         app:layout_constraintTop_toTopOf="@+id/order_indicator" />
 

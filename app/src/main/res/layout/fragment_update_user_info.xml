@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateUserInfoFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_info_profile"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="2dp"
+        android:src="@mipmap/profile"
+        app:civ_border_color="@color/purple_500"
+        app:civ_border_width="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/name_editTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/change_photo_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
+        android:stateListAnimator="@null"
+        android:text="Change Photo"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/user_info_profile"
+        app:layout_constraintStart_toStartOf="@+id/user_info_profile"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_profile" />
+
+
+    <Button
+        android:id="@+id/remove_photo_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/white"
+        android:stateListAnimator="@null"
+        android:text="Remove"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintEnd_toEndOf="@+id/user_info_profile"
+        app:layout_constraintStart_toStartOf="@+id/user_info_profile"
+        app:layout_constraintTop_toBottomOf="@+id/change_photo_btn" />
+
+    <EditText
+        android:id="@+id/name_editTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="UserName"
+        app:layout_constraintBottom_toTopOf="@+id/update_data_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_profile" />
+
+    <EditText
+        android:id="@+id/email_editTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_editTxt" />
+
+    <Button
+        android:id="@+id/update_data_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:textAllCaps="false"
+        android:text="Update"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
